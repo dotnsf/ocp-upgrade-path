@@ -95,6 +95,7 @@ async function find_oldest_path( target, current ){
       }
     }
 
+    //. path == '' の場合は「見つからない」
     resolve( path );
   });
 }
@@ -111,14 +112,18 @@ async function find_path( currentversion, targetversion ){
 
     var results = [ targetversion ];
     var path = await find_oldest_path( targetversion, currentversion );
-    while( path ){
-      if( path == currentversion ){
-        path = null;
+    do{
+      if( path ){
+        if( path == currentversion ){
+          path = null;
+        }else{
+          results.unshift( path );
+          path = await find_oldest_path( path, currentversion );
+        }
       }else{
-        results.unshift( path );
-        path = await find_oldest_path( path, currentversion );
+        results.unshift( '(impossible)' );
       }
-    }
+    }while( path );
 
     results.unshift( currentversion );
     resolve( results );
