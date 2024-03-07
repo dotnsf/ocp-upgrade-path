@@ -25,7 +25,7 @@ https://sharma-hina.medium.com/successfully-upgrade-openshift-cluster-on-a-disco
     - (2) next, upgrade from 4.4.13 to 4.5.16,
     - (3) and, upgrade from 4.5.16 to 4.6.4.
 
-    - Those all 3 upgrades are supposed to be possible.
+    - Those all 3 upgrades are supposed to be possible(= supported, based on `release.txt`).
 
 
 ## Licensing
